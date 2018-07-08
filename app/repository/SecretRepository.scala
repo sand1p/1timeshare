@@ -3,26 +3,26 @@ package repository
 import java.util.Date
 
 import javax.inject.Singleton
-import model.Secrete
+import model.Secret
 
 import scala.collection.mutable
 import scala.collection.mutable.HashMap
 
 @Singleton
-class SecreteRepository {
+class SecretRepository {
   //as we want to store key value
-  val map: mutable.HashMap[String, Secrete] = new HashMap[String, Secrete]
-  val predicate: (String, Secrete) => Boolean = (key, value) => true
+  val map: mutable.HashMap[String, Secret] = new HashMap[String, Secret]
+  val predicate: (String, Secret) => Boolean = (key, value) => true
 
-  def save(key: String, secrete: Secrete) = {
-    map.put(key, secrete)
+  def save(key: String, secret: Secret) = {
+    map.put(key, secret)
     Unit
   }
 
-  def getAndRemove(key: String): Option[Secrete] = {
-    val secrete = map.get(key)
+  def getAndRemove(key: String): Option[Secret] = {
+    val secret = map.get(key)
     map.remove(key)
-    secrete
+    secret
   }
 
   def getExpiredKeys(now: Date): Seq[String] = {

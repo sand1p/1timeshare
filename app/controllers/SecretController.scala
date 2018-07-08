@@ -1,10 +1,10 @@
 package controllers
 
 import javax.inject.{Inject, Singleton}
-import model.Secrete
+import model.Secret
 import play.api.libs.json.{JsValue, _}
 import play.api.mvc._
-import service.SecreteService
+import service.SecretService
 
 /**
   *
@@ -12,24 +12,23 @@ import service.SecreteService
   *           Abstract controller extends BaseController which deals with Results, HTTP protocol , contentTypes Headers.
   */
 @Singleton
-class SecreteController @Inject()(cc: ControllerComponents, secreteService: SecreteService) extends AbstractController(cc) {
+class SecretController @Inject()(cc: ControllerComponents, secretService: SecretService) extends AbstractController(cc) {
 
-  implicit val secreteFormat: Format[Secrete] = Json.format[Secrete]
+  implicit val secretFormat: Format[Secret] = Json.format[Secret]
 
   def save() = Action(parse.json) { request: Request[JsValue] =>
-    val secrete: Option[Secrete] = request.body.asOpt[Secrete]
-    secrete match {
-      case Some(secrete) =>
-        val key = secreteService.save(secrete)
+    val secretOptional: Option[Secret] = request.body.asOpt[Secret]
+    secretOptional match {
+      case Some(secret) =>
+        val key = secretService.save(secret)
         val link = s"http://${request.host}${request.uri}$key"
         Ok(link)
-      case None =>
-        BadRequest
+      case None => BadRequest
     }
   }
 
   def get(key: String) = Action { implicit request =>
-    secreteService.get(key) match {
+    secretService.get(key) match {
       case Some(sec) => Ok(sec.value)
       case None => NotFound
     }

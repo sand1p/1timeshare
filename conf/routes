@@ -9,6 +9,6 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 
 #
-POST  /secrete/      controllers.SecreteController.save
+POST  /secret/      controllers.SecretController.save
 
-GET   /secrete/:key      controllers.SecreteController.get(key: String)
+GET   /secret/:key      controllers.SecretController.get(key: String)
