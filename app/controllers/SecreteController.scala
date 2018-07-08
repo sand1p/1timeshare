@@ -18,15 +18,19 @@ class SecreteController @Inject()(cc: ControllerComponents, secreteService: Secr
 
   def save() = Action(parse.json) { request: Request[JsValue] =>
     val secrete: Option[Secrete] = request.body.asOpt[Secrete]
-      println("sec " + secrete)
-    val key = secreteService.save(secrete.map(a => a.value))
-    val link = s"http://${request.host}${request.uri}$key"
-    Ok(link)
+    secrete match {
+      case Some(secrete) =>
+        val key = secreteService.save(secrete)
+        val link = s"http://${request.host}${request.uri}$key"
+        Ok(link)
+      case None =>
+        BadRequest
+    }
   }
 
   def get(key: String) = Action { implicit request =>
     secreteService.get(key) match {
-      case Some(sec) => Ok(sec)
+      case Some(sec) => Ok(sec.value)
       case None => NotFound
     }
   }

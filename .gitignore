@@ -18,3 +18,4 @@ project/project/target
 .cache
 .lib/
 public/
+.g8

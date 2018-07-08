@@ -1,3 +1,5 @@
 package model
 
-case class Secrete(value: String)
+import java.util.Date
+
+case class Secrete(value: String, expireAt: Date)
