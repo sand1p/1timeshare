@@ -14,7 +14,7 @@ import service.SecretService
 class SecretControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting {
   implicit lazy val materializer: Materializer = app.materializer
 
-  "model.Secrete Controller GET " should {
+  "controllers.SecreteController GET " should {
     "should return secret for given key" in {
       val secretController = new SecretController(stubControllerComponents(), new StubSecretService)
 

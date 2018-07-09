@@ -8,6 +8,7 @@ import repository.SecretRepository
 
 @Singleton
 class SecretService @Inject()(secretRepository: SecretRepository) {
+
   def save(secret: Secret) = {
     val key = UUID.randomUUID.toString
     secretRepository.save(key, secret)
@@ -17,4 +18,5 @@ class SecretService @Inject()(secretRepository: SecretRepository) {
   def get(key: String): Option[Secret] = {
     secretRepository.getAndRemove(key)
   }
+
 }

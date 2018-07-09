@@ -16,7 +16,7 @@ class SecretController @Inject()(cc: ControllerComponents, secretService: Secret
 
   implicit val secretFormat: Format[Secret] = Json.format[Secret]
 
-  def save() = Action(parse.json) { request: Request[JsValue] =>
+  def save = Action(parse.json) { request: Request[JsValue] =>
     val secretOptional: Option[Secret] = request.body.asOpt[Secret]
     secretOptional match {
       case Some(secret) =>

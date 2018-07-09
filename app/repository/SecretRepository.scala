@@ -12,7 +12,6 @@ import scala.collection.mutable.HashMap
 class SecretRepository {
   //as we want to store key value
   val map: mutable.HashMap[String, Secret] = new HashMap[String, Secret]
-  val predicate: (String, Secret) => Boolean = (key, value) => true
 
   def save(key: String, secret: Secret) = {
     map.put(key, secret)
@@ -26,7 +25,10 @@ class SecretRepository {
   }
 
   def getExpiredKeys(now: Date): Seq[String] = {
-    map.filter(p => p._2.expireAt.before(now)).keySet.toSeq
+    map.filter{
+      case (key , value) => value.expireAt.before(now)
+    }.keySet.toSeq
+    //map.filter(p => p._2.expireAt.before(now)).keySet.toSeq
   }
 
   def removeKeys(expiredKeys: Seq[String]) = {
