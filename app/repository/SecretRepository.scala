@@ -25,8 +25,8 @@ class SecretRepository {
   }
 
   def getExpiredKeys(now: Date): Seq[String] = {
-    map.filter{
-      case (key , value) => value.expireAt.before(now)
+    map.filter {
+      case (key, value) => value.expireAt.before(now)
     }.keySet.toSeq
     //map.filter(p => p._2.expireAt.before(now)).keySet.toSeq
   }

@@ -25,7 +25,7 @@ class SecretControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
     }
   }
 
-  class StubSecretService extends SecretService(null) {
+  class StubSecretService extends SecretService(null,null) {
     override def save(secret: Secret): String = "sdecfgbhjmkdsdfgbhjmk"
 
     override def get(key: String): Option[Secret] = Option(Secret("password", new Date))
