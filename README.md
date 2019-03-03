@@ -8,7 +8,7 @@ Sometimes we need to share our credentials with our dear one's, We share it over
     2. Link expires once accessed, if not accessed then in 5 minutes.
     3. Data is stored at server side in encrypted form.
     4. End to End encryption is implemented.
-    
+### Project Tracking and RoadMap: https://trello.com/b/32CuMOih/1timeshare
 ## How to run application
 ### Prerequisites (platform setup): 
     1. java 8 or latest
@@ -91,5 +91,3 @@ Sometimes we need to share our credentials with our dear one's, We share it over
 ### Travis CI 
 ### Docker Support 
 ### Heroku 
-
-### Project Tracking and RoadMap: https://trello.com/b/32CuMOih/1timeshare
