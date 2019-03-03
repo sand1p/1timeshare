@@ -21,7 +21,7 @@ class SecretControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
       val response = secretController.get("sdecfgbhjmkdsdfgbhjmk").apply(FakeRequest(GET, "/secret"))
 
       status(response) mustBe OK
-      contentAsString(response) mustBe "password"
+      contentAsString(response) mustBe """{"password" : "password"}"""
     }
   }
 
