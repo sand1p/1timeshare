@@ -15,7 +15,7 @@ Sometimes we need to share our credentials with our dear one's, We share it over
     2. sbt 
 ### Steps to run application in dev mode: 
     1. Install sbt in your local environment. 
-    2. Checkout the repository.
+    2. Clone the repository.
     3. Enter the project directory.
     4. Execute following commands in CLI.
     sbt : to enter into sbt console. Execute following commands inside sbt console.
