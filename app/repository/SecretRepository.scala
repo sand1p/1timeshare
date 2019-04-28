@@ -11,9 +11,9 @@ import scala.collection.mutable.HashMap
 @Singleton
 class SecretRepository {
   //as we want to store key value
-  val map: mutable.HashMap[String, Secret] = new HashMap[String, Secret]
+  private val map: mutable.HashMap[String, Secret] = HashMap.empty[String, Secret]
 
-  def save(key: String, secret: Secret) = {
+  def save(key: String, secret: Secret): Unit.type = {
     map.put(key, secret)
     Unit
   }
