@@ -24,8 +24,8 @@ class SecretController @Inject()(cc: ControllerComponents, secretService: Secret
     val secretOptional: Option[Secret] = request.body.asOpt[Secret]
     secretOptional match {
       case Some(secret) =>
-        val key = secretService.save(secret)
-        val link = s"http://${request.host}${request.uri}$key"
+        val key: String = secretService.save(secret)
+        val link: String = s"http://${request.host}${request.uri}$key"
         Logger.debug(s"Password share link : [ $link ]")
         Result(header = ResponseHeader(200, Map.empty), body = HttpEntity.Strict(ByteString(s"""{"link" : "$link"}"""), Some("application/json")) )
       case None =>
